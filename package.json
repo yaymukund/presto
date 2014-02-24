@@ -1,0 +1,22 @@
+{
+  "name": "presto",
+  "version": "0.1.0",
+  "author": "Mukund Lakshman <yaymukund@gmail.com>",
+  "description": "A tiny server for uploading MP3s and getting tag data",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yaymukund/presto.git"
+  },
+  "keywords": [
+    "presto"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.10"
+  },
+  "private": true,
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
