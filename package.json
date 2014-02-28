@@ -2,7 +2,7 @@
   "name": "presto",
   "version": "0.1.0",
   "author": "Mukund Lakshman <yaymukund@gmail.com>",
-  "description": "A tiny server for uploading MP3s and getting tag data",
+  "description": "A tiny libraries for uploading MP3s and getting tag data",
   "repository": {
     "type": "git",
     "url": "https://github.com/yaymukund/presto.git"
@@ -15,8 +15,9 @@
     "node": ">=0.10"
   },
   "private": true,
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
+    "expect.js": "~0.3.1",
+    "mocha": "~1.17.1"
   }
 }
