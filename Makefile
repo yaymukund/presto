@@ -1,4 +1,4 @@
-.PHONY: all move_files build test
+.PHONY: all move_files build test watch
 
 watcher = node_modules/nodemon/bin/nodemon.js
 
