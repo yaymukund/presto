@@ -1,1 +1,5 @@
 node_modules
+spec/vendor/expect.js
+spec/vendor/mocha.js
+spec/vendor/mocha.css
+spec/build
