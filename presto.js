@@ -1,5 +1,5 @@
 // http://caolanmcmahon.com/posts/writing_for_node_and_the_browser/
-(function(exports, $, RSVP) {
+(function($, exports, RSVP) {
   exports.create = function(options) {
     var presto = Object.create(this);
 
@@ -57,4 +57,6 @@
   };
 
   return exports;
-})(typeof exports === 'undefined' ? this['Presto'] = {} : exports, jQuery, RSVP);
+})(jQuery,
+  typeof exports === 'undefined' ? this['Presto'] = {} : exports,
+  typeof Ember === 'undefined' ? RSVP : Ember.RSVP);
