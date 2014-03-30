@@ -1,0 +1,24 @@
+#!/usr/bin/env zsh
+get_package_version() {
+  echo 'console.log(require("./package.json").version);' | node;
+}
+
+package_version=$(get_package_version)
+
+
+read -q "REPLY?Do you want to tag and push version $package_version? ";
+echo
+
+if [[ ! $REPLY =~ ^[Yy]$ ]]
+then
+  exit 1;
+fi
+
+if [[ -n $(git status -s) ]]
+then
+  echo 'You have uncommitted changes! Cannot proceed.';
+  exit 1;
+fi
+
+echo git tag $package_version
+echo git push origin $package_version

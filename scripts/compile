@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 var Compiler = require("es6-module-transpiler").Compiler,
     fs = require('fs'),
     filenames = [ 'presto', 'presto/util'];

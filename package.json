@@ -1,6 +1,6 @@
 {
   "name": "presto",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Mukund Lakshman <yaymukund@gmail.com>",
   "description": "A tiny libraries for uploading MP3s and getting tag data",
   "main": "dist/presto.js",
@@ -9,7 +9,7 @@
     "url": "https://github.com/yaymukund/presto.git"
   },
   "scripts": {
-    "prepublish": "node scripts/compile.js"
+    "prepublish": "./scripts/compile"
   },
   "keywords": [
     "presto"
