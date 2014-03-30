@@ -1,6 +1,6 @@
 {
   "name": "presto",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": "Mukund Lakshman <yaymukund@gmail.com>",
   "description": "A tiny libraries for uploading MP3s and getting tag data",
   "main": "dist/presto.js",
