@@ -3,6 +3,10 @@ get_package_version() {
   echo 'console.log(require("./package.json").version);' | node;
 }
 
+tag_exists() {
+  git rev-parse --verify -q $1 > /dev/null 2>&1;
+}
+
 package_version=$(get_package_version)
 
 
@@ -17,6 +21,12 @@ fi
 if [[ -n $(git status -s) ]]
 then
   echo 'You have uncommitted changes! Cannot proceed.';
+  exit 1;
+fi
+
+if tag_exists $package_version
+then
+  echo "Aborted because the tag \"$package_version\" already exists.";
   exit 1;
 fi
 
