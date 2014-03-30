@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "author": "Mukund Lakshman <yaymukund@gmail.com>",
   "description": "A tiny libraries for uploading MP3s and getting tag data",
-  "main": "presto.js",
+  "main": "dist/presto.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/yaymukund/presto.git"
+  },
+  "scripts": {
+    "prepublish": "node scripts/compile.js"
   },
   "keywords": [
     "presto"
@@ -20,6 +23,7 @@
   "devDependencies": {
     "expect.js": "~0.3.1",
     "mocha": "~1.17.1",
-    "nodemon": "~1.0.15"
+    "nodemon": "~1.0.15",
+    "es6-module-transpiler": "^0.3.6"
   }
 }
