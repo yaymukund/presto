@@ -1,31 +1,28 @@
+var get = Ember.get;
+
 describe('Presto', function() {
   $.mockjaxSettings.responseTime = 100;
 
-  describe('.create', function() {
-    it('returns a new presto instance', function() {
-      expect(Presto.create({
-        bucketUrl: 'foo',
-        policyUrl: 'bar'
-      })).to.be.an('object');
-    });
-
-    it('requires a bucketUrl', function() {
-      expect(function() { Presto.create({policyUrl: 'foo'}); }).to.throwError();
-    });
-
-    it('requires a policyUrl', function() {
-      expect(function() { Presto.create({bucketUrl: 'foo'}); }).to.throwError();
-    });
+  it('defines `upload`', function() {
+    expect(Presto.upload).to.be.a('function');
   });
 
-  describe('.uploadFile', function() {
-    var presto = Presto.create({
-      bucketUrl: 'http://test.host/bucketUrl',
-      policyUrl: 'http://test.host/policyUrl'
-    });
+  it('lets you set bucketUrl', function() {
+    Presto.reopenClass({bucketUrl: 'http://test.host/bucketUrl'});
+    expect(get(Presto, 'bucketUrl')).to.be('http://test.host/bucketUrl');
+  });
 
-    it('returns a deferred promise', function() {
-      expect(presto.uploadFile(null)).to.be.an('object');
+  it('lets you set policyUrl', function() {
+    Presto.reopenClass({policyUrl: 'http://test.host/policyUrl'});
+    expect(get(Presto, 'policyUrl')).to.be('http://test.host/policyUrl');
+  });
+
+  describe('.upload', function() {
+    before(function() {
+      Presto.reopenClass({
+        bucketUrl: 'http://test.host/bucketUrl',
+        policyUrl: 'http://test.host/policyUrl'
+      });
     });
 
     it('tries to hit policyUrl', function(done) {
@@ -37,7 +34,7 @@ describe('Presto', function() {
         }
       });
 
-      presto.uploadFile(null);
+      Presto.upload(null);
     });
 
     it('tries to hit bucketUrl', function(done) {
@@ -50,7 +47,7 @@ describe('Presto', function() {
         }
       });
 
-      presto.uploadFile('music');
+      Presto.upload('music');
     });
 
     it('sends formdata to the bucketUrl', function(done) {
@@ -64,7 +61,7 @@ describe('Presto', function() {
         }
       });
 
-      presto.uploadFile('music');
+      Presto.upload('music');
     });
   });
 
