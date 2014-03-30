@@ -16,7 +16,7 @@ move_test_files:
 	cp node_modules/expect.js/index.js spec/vendor/expect.js
 
 build_tests: build move_test_files
-	cat spec/*.js > spec/build/specs.js
+	cat spec/util.js spec/*_spec.js > spec/build/specs.js
 
 watch:
 	$(watcher) --exec make build_tests --ignore spec/vendor/ --ignore spec/lib/
