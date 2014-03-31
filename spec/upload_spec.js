@@ -6,43 +6,39 @@ describe('an upload instance', function() {
     });
   });
 
-  it('does not set isDone if the POST hasn\'t returned', function() {
+  it('does not set isSettled if the POST hasn\'t returned', function() {
     mockGetPolicy();
     var upload = Presto.upload('test12');
-    expect(upload.get('isDone')).to.be(false);
+    expect(upload.get('isSettled')).to.be(false);
   });
 
-  it('sets isDone if the POST returns', function() {
+  it('sets isSettled if the POST returns', function(done) {
     mockGetPolicy();
+    mockPostBucket();
 
-    var mid = mockPostBucket({
-      response: function(req) {
-        $.mockjaxClear(mid);
-        expect(upload.get('isDone')).to.be(true);
-        done();
-      }
+    var upload = Presto.upload('test12');
+
+    upload.then(function() {
+      expect(upload.get('isSettled')).to.be(true);
+      done();
     });
-
-    var upload = Presto.upload('test12');
   });
 
-  it('sets isUploading when uploading', function() {
+  it('sets isPending when uploading', function() {
     mockGetPolicy();
     var upload = Presto.upload('test12');
-    expect(upload.get('isUploading')).to.be(true);
+    expect(upload.get('isPending')).to.be(true);
   });
 
-  it('unsets isUploading when the POST returns', function() {
+  it('unsets isPending when the POST returns', function(done) {
     mockGetPolicy();
+    mockPostBucket();
 
-    var mid = mockPostBucket({
-      response: function(req) {
-        $.mockjaxClear(mid);
-        expect(upload.get('isUploading')).to.be(false);
-        done();
-      }
+    var upload = Presto.upload('test12');
+
+    upload.then(function() {
+      expect(upload.get('isPending')).to.be(false);
+      done();
     });
-
-    var upload = Presto.upload('test12');
   });
 });
