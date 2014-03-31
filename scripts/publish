@@ -10,11 +10,12 @@ tag_exists() {
 package_version=$(get_package_version)
 
 
-read -q "REPLY?Do you want to tag and push version $package_version? ";
+read -q "REPLY?Do you want to tag and push version $package_version? (y/n) ";
 echo
 
 if [[ ! $REPLY =~ ^[Yy]$ ]]
 then
+  echo "You didn't confirm. Aborting...";
   exit 1;
 fi
 
