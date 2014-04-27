@@ -8,7 +8,7 @@ describe('an upload instance', function() {
 
   it('does not set isSettled if the POST hasn\'t returned', function() {
     mockGetPolicy();
-    var upload = Presto.upload('test12');
+    var upload = Presto.upload(testFile);
     expect(upload.get('isSettled')).to.be(false);
   });
 
@@ -16,17 +16,17 @@ describe('an upload instance', function() {
     mockGetPolicy();
     mockPostBucket();
 
-    var upload = Presto.upload('test12');
+    var upload = Presto.upload(testFile);
 
     upload.then(function() {
       expect(upload.get('isSettled')).to.be(true);
       done();
-    });
+    })
   });
 
   it('sets isPending when uploading', function() {
     mockGetPolicy();
-    var upload = Presto.upload('test12');
+    var upload = Presto.upload(testFile);
     expect(upload.get('isPending')).to.be(true);
   });
 
@@ -34,7 +34,7 @@ describe('an upload instance', function() {
     mockGetPolicy();
     mockPostBucket();
 
-    var upload = Presto.upload('test12');
+    var upload = Presto.upload(testFile);
 
     upload.then(function() {
       expect(upload.get('isPending')).to.be(false);

@@ -8,22 +8,28 @@
 <body>
   <div id="mocha"></div>
   <script src="vendor/jquery-2.1.0.js"></script>
-  <script src="vendor/jquery.mockjax.js"></script>
   <script src="vendor/expect.js"></script>
   <script src="vendor/handlebars.js"></script>
   <script src="vendor/ember.js"></script>
   <script src="vendor/mocha.js"></script>
   <script>mocha.setup('bdd')</script>
   <script src="vendor/loader.js"></script>
+  <script src="vendor/ic-ajax.js"></script>
+  <script src="vendor/ic-ajax-shim.js"></script>
   <script src="../dist/presto.js"></script>
   <script type="text/javascript">
     var Presto = require('presto').default;
   </script>
   <script src="build/specs.js"></script>
+
   <script>
-    mocha.checkLeaks();
-    mocha.globals(['jQuery', 'Ember', 'Presto']);
-    mocha.run();
+    var startTests = function(file) {
+      window.testFile = file;
+      mocha.checkLeaks();
+      mocha.globals(['jQuery', 'Ember', 'Presto', 'testFile']);
+      mocha.run();
+    };
   </script>
+  <input type="file" onchange="startTests(this.files[0]);">
 </body>
 </html>

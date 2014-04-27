@@ -11,9 +11,7 @@ publish:
 	./scripts/publish
 
 move_test_files:
-	cp node_modules/mocha/mocha.js spec/vendor
-	cp node_modules/mocha/mocha.css spec/vendor
-	cp node_modules/expect.js/index.js spec/vendor/expect.js
+	./scripts/prepare-tests
 
 build_tests: build move_test_files
 	cat spec/util.js spec/*_spec.js > spec/build/specs.js
