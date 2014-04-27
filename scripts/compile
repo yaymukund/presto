@@ -1,17 +1,28 @@
 #!/usr/bin/env node
 var Compiler = require("es6-module-transpiler").Compiler,
     fs = require('fs'),
-    filenames = [ 'presto', 'presto/util'];
+    filenames = [
+      ['presto', 'lib/presto'],
+      ['presto/util', 'lib/presto/util'],
+      ['presto/policy', 'lib/presto/policy'],
+      ['presto/s3-file', 'lib/presto/s3-file'],
+      ['presto/upload', 'lib/presto/upload'],
+      ['id3', 'node_modules/id3js/dist/id3']
+    ];
 
 var outputs = [];
 
-filenames.forEach(function(filename) {
-  console.log('Compiling', filename);
+filenames.forEach(function(dep) {
+  var name = dep[0],
+      path = dep[1];
 
-  var source = fs.readFileSync('lib/'+filename+'.js'),
-      compiler = new Compiler(source, filename);
+  console.log('Compiling', name);
+
+  var source = fs.readFileSync(path+'.js'),
+      compiler = new Compiler(source, name);
 
   outputs.push(compiler.toAMD());
 });
 
 fs.writeFileSync('dist/presto.js', outputs.join("\n"));
+console.log('Written to dist/presto.js');
