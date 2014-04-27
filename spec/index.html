@@ -7,6 +7,7 @@
 </head>
 <body>
   <div id="mocha"></div>
+  <script src="vendor/test-mp3-blob.js"></script>
   <script src="vendor/jquery-2.1.0.js"></script>
   <script src="vendor/expect.js"></script>
   <script src="vendor/handlebars.js"></script>
@@ -23,13 +24,9 @@
   <script src="build/specs.js"></script>
 
   <script>
-    var startTests = function(file) {
-      window.testFile = file;
-      mocha.checkLeaks();
-      mocha.globals(['jQuery', 'Ember', 'Presto', 'testFile']);
-      mocha.run();
-    };
+    mocha.checkLeaks();
+    mocha.globals(['jQuery', 'Ember', 'Presto', 'testFile']);
+    mocha.run();
   </script>
-  <input type="file" onchange="startTests(this.files[0]);">
 </body>
 </html>
