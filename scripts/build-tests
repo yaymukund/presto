@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+var util = require('./util'),
+    TEST_FILES = [
+      'spec/util.js',
+      'spec/policy-spec.js',
+      'spec/presto-spec.js',
+      'spec/upload-spec.js'
+    ];
+
+util.copy('node_modules/mocha/mocha.js', 'spec/vendor/mocha.js');
+util.copy('node_modules/mocha/mocha.css', 'spec/vendor/mocha.css');
+util.copy('node_modules/expect.js/index.js', 'spec/vendor/expect.js');
+
+var src = '';
+
+TEST_FILES.forEach(function(path) {
+  src += util.read(path);
+});
+
+var compiledSrc = util.compile('presto/spec', src);
+compiledSrc += "\n; require('presto/spec');";
+util.write('spec/build/specs.js', compiledSrc);

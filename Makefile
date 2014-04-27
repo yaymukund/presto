@@ -10,11 +10,8 @@ build:
 publish:
 	./scripts/publish
 
-move_test_files:
-	./scripts/prepare-tests
-
-build_tests: build move_test_files
-	cat spec/util.js spec/*_spec.js > spec/build/specs.js
+build_tests: build
+	./scripts/build-tests
 
 watch:
 	$(watcher) --exec make build_tests --ignore spec/vendor/ --ignore spec/lib/
