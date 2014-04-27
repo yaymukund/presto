@@ -4,7 +4,8 @@ var util = require('./util'),
       'spec/util.js',
       'spec/policy-spec.js',
       'spec/presto-spec.js',
-      'spec/upload-spec.js'
+      'spec/upload-spec.js',
+      'spec/s3-file-spec.js'
     ];
 
 util.copy('node_modules/mocha/mocha.js', 'spec/vendor/mocha.js');

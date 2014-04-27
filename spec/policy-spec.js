@@ -5,10 +5,10 @@ describe('Policy', function() {
     expect(Policy).to.be.ok();
   });
 
-  it('fails without a policyUrl', function(done) {
-    Policy.create().catch(function(err) {
-      done();
-    });
+  it('fails without a policyUrl', function() {
+    expect(function() {
+      Policy.create();
+    }).to.throwError(/policyUrl is required/);
   });
 
   it('succeeds with a policyUrl', function(done) {
