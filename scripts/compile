@@ -2,10 +2,10 @@
 var util = require('./util'),
     FILES = [
       ['presto', 'lib/presto'],
+      ['presto/api', 'lib/presto/api'],
       ['presto/util', 'lib/presto/util'],
-      ['presto/policy', 'lib/presto/policy'],
-      ['presto/s3-file', 'lib/presto/s3-file'],
       ['presto/upload', 'lib/presto/upload'],
+      ['presto/cover', 'lib/presto/cover'],
       ['id3', 'node_modules/id3js/dist/id3']
     ];
 

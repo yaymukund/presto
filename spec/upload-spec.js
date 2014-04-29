@@ -1,6 +1,6 @@
 describe('an upload instance', function() {
   before(function() {
-    Presto.reopenClass({
+    Presto.configure({
       bucketUrl: 'http://test.host/bucketUrl',
       policyUrl: 'http://test.host/policyUrl'
     });
@@ -8,6 +8,7 @@ describe('an upload instance', function() {
 
   it('does not set isSettled if the POST hasn\'t returned', function() {
     mockGetPolicy();
+    mockFindTrack();
     var upload = Presto.upload(testFile);
     expect(upload.get('isSettled')).to.be(false);
   });
@@ -15,6 +16,7 @@ describe('an upload instance', function() {
   it('sets isSettled if the POST returns', function(done) {
     mockGetPolicy();
     mockPostBucket();
+    mockFindTrack();
 
     var upload = Presto.upload(testFile);
 
