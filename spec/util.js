@@ -1,14 +1,30 @@
 import { queryStringFor } from 'presto/util';
 import { config } from 'presto/api';
+import Presto from 'presto';
 
 var mockGetPolicy = function(options) {
-  var _options = { textStatus: 'success', response: {}, jqXHR: {} };
+  var _options = {
+    textStatus: 'success',
+    response: { policy: true },
+    jqXHR: {}
+  };
+
   if (options) { $.extend(_options, options); }
   ic.ajax.defineFixture('http://test.host/policyUrl', _options);
 };
 
 var mockPostBucket = function(options) {
-  var _options = { textStatus: 'success', response: {}, jqXHR: {} };
+  var _options = {
+    textStatus: 'success',
+    jqXHR: {},
+    response:
+      '<PostResponse>'+
+        '<Location>'+
+          'http://test.host/bucketUrl/foo-abc.mp3'+
+        '</Location>'+
+      '</PostResponse>'
+  };
+
   if (options) { $.extend(_options, options); }
   ic.ajax.defineFixture('http://test.host/bucketUrl', _options);
 };
@@ -43,6 +59,11 @@ afterEach(function() {
 });
 
 beforeEach(function() {
+  Presto.configure({
+    bucketUrl: 'http://test.host/bucketUrl',
+    policyUrl: 'http://test.host/policyUrl'
+  });
+
   mockGetPolicy();
   mockPostBucket();
   mockFindTrack();

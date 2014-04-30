@@ -6,4 +6,10 @@ describe('Presto', function() {
   it('defines `configure`', function() {
     expect(Presto.configure).to.be.a('function');
   });
+
+  it('resolves after uploading', function(done) {
+    Presto.upload(testFile).then(function() {
+      done();
+    });
+  });
 });
