@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 var util = require('./util'),
     FILES = [
+      ['id3', 'node_modules/id3js/dist/id3'],
       ['presto', 'lib/presto'],
       ['presto/api', 'lib/presto/api'],
       ['presto/util', 'lib/presto/util'],
       ['presto/upload', 'lib/presto/upload'],
-      ['presto/cover', 'lib/presto/cover'],
-      ['id3', 'node_modules/id3js/dist/id3']
+      ['presto/cover', 'lib/presto/cover']
     ];
 
 var src = util.compileManyFiles(FILES);
