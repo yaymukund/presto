@@ -1,14 +1,15 @@
 #!/usr/bin/env node
-var util = require('./util'),
+var src, util = require('./util'),
     FILES = [
-      ['id3', 'node_modules/id3js/dist/id3'],
       ['presto', 'lib/presto'],
+      ['presto/id3', 'lib/presto/id3'],
       ['presto/api', 'lib/presto/api'],
       ['presto/util', 'lib/presto/util'],
       ['presto/upload', 'lib/presto/upload'],
       ['presto/cover', 'lib/presto/cover']
     ];
 
-var src = util.compileManyFiles(FILES);
+src = util.compileManyFiles(FILES);
 util.write('dist/presto.js', src);
 console.log('Written to dist/presto.js');
+
